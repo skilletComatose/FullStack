@@ -3,23 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Aplicacion</title>
+    <link href="https://fonts.googleapis.com/css?family=Neucha&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static',filename='main.css')}}">
 </head>
 <body>
-     <h1>APP</h1>
-
-     <table border=1>
-         {% for rows in rows %}
-            <tr>
-                <td>
-                    {{row["HASH"]}}
-                </td>
-            </tr>
-         {%endfor%}         
-     </table>
-
-       <br> 
-     <p><a href="/chain"  >1.Insert Hash</a></p>
-    
+    <main class="container p-4">
+       <h1 class="displa-4 text-center title mt-4 ">Web service</h1> 
+       <div class="row">
+          <div class="col-md-4 offset-md-4 my-auto">
+              <div class="card">
+                  <div class="card-header">
+                <form action="/chain" method="POST">
+                   <div class="form-group">
+                    <input type="text" placeholder="Ingrese HASH" name="contenedor" class="form-control" autofocus>
+                   </div>
+                   <div class="form-group">
+                   <button type="submit" class="btn btn-primary btn-block">
+                   Guardar
+                   </button> </div>
+                </form>
+                <form action="/chain" method="GET"> 
+                   <button type="submit" class="btn btn-primary btn-block">
+                    Mostrar
+                    </button> 
+                 </form>
+                  </div>
+                  <div class="card-body">
+                   <ul>
+                       {% for dato in datos %}
+                       <li>
+                           {{dato.hash}}
+                       </li>
+                       {% endfor %}
+                   </ul>
+                  </div>
+              </div>
+          </div> 
+       </div>
+    </main>
 </body>
 </html>
