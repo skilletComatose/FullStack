@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <h1>APP</h1>
+
+     <table border=1>
+         {% for rows in rows %}
+            <tr>
+                <td>
+                    {{row["HASH"]}}
+                </td>
+            </tr>
+         {%endfor%}         
+     </table>
+
+       <br> 
+     <p><a href="/chain"  >1.Insert Hash</a></p>
+    
+</body>
+</html>
