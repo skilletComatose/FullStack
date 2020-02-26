@@ -7,8 +7,9 @@ RUN mkdir basedatos/
 
 COPY basedatos/tasks.db basedatos/
 COPY hello.py /
+COPY templates/* /templates/
+#COPY templates/2.html /templates
 
-COPY templates/* /templates
 RUN pip3 install Flask-SQLAlchemy 
 
 ENV FLASK_APP=hello.py
