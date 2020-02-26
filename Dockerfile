@@ -1,4 +1,4 @@
-FROM python:3.6-buster
+FROM python:3.6-buster 
 RUN pip3 install Flask
 RUN mkdir templates
 RUN apt update
@@ -8,7 +8,7 @@ RUN mkdir basedatos/
 COPY basedatos/tasks.db basedatos/
 COPY hello.py /
 COPY templates/* /templates/
-#COPY templates/2.html /templates
+
 
 RUN pip3 install Flask-SQLAlchemy 
 
