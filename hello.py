@@ -45,7 +45,7 @@ def guardar():
 @app.route('/chain/last')
 def last():
     Datos.query.order_by(desc(Datos.id)).limit(5)
-    last= Datos.query.order_by(Datos.id).first()
+    last= Datos.query.order_by(desc(Datos.id)).first()
     return render_template('2.html',last=last)   
 
 @app.route('/api/v1/chain')
