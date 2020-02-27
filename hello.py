@@ -1,15 +1,25 @@
-from flask import Flask,render_template,redirect,url_for,request
+from flask import Flask,render_template,redirect,url_for,request,jsonify
 from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 from sqlalchemy import desc
 import hashlib 
 
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///basedatos/tasks.db'
+
 db = SQLAlchemy(app)
+ma = Marshmallow(app)
 
 class Datos(db.Model):
     id= db.Column(db.Integer, primary_key=True)
     hash=db.Column(db.String(100))
+
+
+class DatoSchema(ma.ModelSchema):
+    class Meta:
+        model = Datos
+
 
 
 @app.route("/")
@@ -38,6 +48,14 @@ def last():
     last= Datos.query.order_by(Datos.id).first()
     return render_template('2.html',last=last)   
 
+@app.route('/api/v1/chain')
+def showJason():
+    hashSchema = DatoSchema(many=True)
+    hashes = Datos.query.all()
+    output = hashSchema.dump(hashes)
+    print(output)
+    return(jsonify( {'datos':output} ))
+    #return hashSchema.dump(hash)
 
 if __name__ =='__main__':
     app.run(debug=True)
