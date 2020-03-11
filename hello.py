@@ -1,8 +1,8 @@
-from flask import Flask,render_template,redirect,url_for,request,jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
-from sqlalchemy import desc
-import hashlib 
+from flask import Flask,render_template,redirect,url_for,request,jsonify    
+from flask_sqlalchemy import SQLAlchemy                                 
+from flask_marshmallow import Marshmallow                                   
+from sqlalchemy import desc                                                  
+import hashlib                                                                      
 
 
 app = Flask(__name__)
@@ -53,9 +53,8 @@ def showJason():
     hashSchema = DatoSchema(many=True)
     hashes = Datos.query.all()
     output = hashSchema.dump(hashes)
-    print(output)
-    return(jsonify( {'datos':output} ))
-    #return hashSchema.dump(hash)
 
+    return(jsonify( {'datos':output} ))
+    
 if __name__ =='__main__':
     app.run(debug=True)
